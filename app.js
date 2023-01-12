@@ -1,3 +1,56 @@
+let now = new Date();
+
+let currentDateTime = document.querySelector("#date-time");
+
+let date = now.getDate();
+let hours = now.getHours();
+let minutes = now.getMinutes();
+let year = now.getFullYear();
+
+let days = [
+  "Sunday",
+  "Monday",
+  "Tuesday",
+  "Wednesday",
+  "Thursday",
+  "Friday",
+  "Saturday",
+  "Sunday",
+];
+let day = days[now.getDay()];
+
+let months = [
+  "Jan",
+  "Feb",
+  "Mar",
+  "Apr",
+  "May",
+  "Jun",
+  "Jul",
+  "Aug",
+  "Sep",
+  "Oct",
+  "Nov",
+  "Dec",
+];
+let month = months[now.getMonth()];
+
+currentDateTime.innterHTML = `${day} ${month} ${date}, ${year}, ${hours}: ${minutes}`;
+
+function search(event) {
+  event.preventDefault();
+  let searchInput = document.querySelector("#search-form");
+  let city = document.querySelector("#city-input");
+  if (searchInput.value) {
+    city.innerHTML = `${searchInput}`;
+  } else {
+    city.innerHTML = null;
+  }
+  alert("please enter city");
+}
+let input = document.querySelector("searchInput");
+input.addEventListener("submit", search);
+
 function showWeather(response) {
   let nowTemperature = document.querySelector("#temperature");
   let temperature = Math.round(response.data.main.temp);
